@@ -31,17 +31,14 @@ h1 {
                  0 0 60px #03a9f4,
                  0 0 70px #03a9f4;
     position: absolute;
-    /* Добавляем анимацию плавного появления/исчезновения */
     opacity: 0;
-    transition: opacity 1s ease-in-out; /* 1 секунда для плавного изменения */
+    transition: opacity 1s ease-in-out; 
 }
 
-/* Класс для отображения текста */
 .visible {
     opacity: 1;
 }
 
-/*  Анимация свечения (перенесена в CSS) */
 @keyframes animate {
     0% {
         filter: hue-rotate(0deg);
@@ -51,7 +48,6 @@ h1 {
     }
 }
 
-/* Применяем анимацию свечения к h1 */
 h1 {
     animation: animate 5s linear infinite;
 }
@@ -78,31 +74,28 @@ h1 {
 
     let currentIndex = 0;
     const greetingElement = document.getElementById("greeting");
-    let isChanging = false; // Флаг, чтобы предотвратить множественные одновременные изменения
+    let isChanging = false; 
 
     function changeGreeting() {
         if (isChanging) {
-            return; // Если уже идет изменение, выходим
+            return; 
         }
         isChanging = true;
 
-        // Сначала делаем текст невидимым
         greetingElement.classList.remove('visible');
 
-        // Ждем завершения анимации исчезновения, затем меняем текст
         setTimeout(() => {
             greetingElement.textContent = greetings[currentIndex];
             currentIndex = (currentIndex + 1) % greetings.length;
-            // После смены текста делаем его видимым
             greetingElement.classList.add('visible');
-            isChanging = false; // Сбрасываем флаг
-        }, 1000); //  Время = transition (1 сек) + задержка, чтобы избежать резкого мерцания
+            isChanging = false; 
+        }, 1000); 
 
     }
 
 
-    setInterval(changeGreeting, 2000); //  Изменили интервал на 2 секунды
-    changeGreeting(); // Устанавливаем начальное значение
+    setInterval(changeGreeting, 2000); 
+    changeGreeting(); 
 </script>
 
 </body>
